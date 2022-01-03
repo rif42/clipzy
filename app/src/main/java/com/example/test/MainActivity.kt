@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.Editable
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 
@@ -19,11 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navbutton:Button=findViewById(R.id.navigation_history)
-        navbutton.setOnClickListener {
-            val intent = Intent(this, ClipboardHistory::class.java)
-            startActivity(intent)
-        }
+
+
+//        val navbutton:ImageButton=findViewById(R.id.navigation_history)
+//        navbutton.setOnClickListener {
+//            val intent = Intent(this, ClipboardHistory::class.java)
+//            startActivity(intent)
+//        }
 
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
         pastebutton.setOnClickListener{
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             copy()
         }
     }
+
 
     override fun onResume() {
         super.onResume()
