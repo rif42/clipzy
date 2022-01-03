@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Clipzy</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_history">History</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_clipboard">Clipboard</string>
+    <string name="blank"> </string>
+    <string name="test">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="title_activity_clipboard_history">ClipboardHistory</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_main2">MainActivity2</string>
+</resources>
