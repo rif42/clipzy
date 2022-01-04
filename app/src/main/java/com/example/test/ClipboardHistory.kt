@@ -15,12 +15,14 @@ class ClipboardHistory : AppCompatActivity() {
 
     private var layoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<ClipboardHistoryAdapter.ViewHolder>?=null
-    val cliphistoryrecview: RecyclerView = findViewById(R.id.cliphistoryrecview)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clipboard_history)
+
+        val cliphistoryrecview: RecyclerView = findViewById(R.id.cliphistoryrecview)
 
         layoutManager = LinearLayoutManager(this)
 

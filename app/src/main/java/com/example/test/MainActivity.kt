@@ -20,13 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-//        val navbutton:ImageButton=findViewById(R.id.navigation_history)
-//        navbutton.setOnClickListener {
-//            val intent = Intent(this, ClipboardHistory::class.java)
-//            startActivity(intent)
-//        }
+        val navhistory:ImageButton=findViewById(R.id.nav_history)
+        navhistory.setOnClickListener {
+            val intenthistory = Intent(this, ClipboardHistory::class.java)
+            startActivity(intenthistory)
+        }
 
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
         pastebutton.setOnClickListener{
@@ -38,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             copy()
         }
     }
-
 
     override fun onResume() {
         super.onResume()

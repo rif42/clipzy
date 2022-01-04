@@ -153,7 +153,7 @@
         android:background="@color/AlmostBlack">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/nav_history"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -162,7 +162,7 @@
             android:background="@color/AlmostBlack"/>
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/nav_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -171,7 +171,7 @@
             android:background="@color/AlmostBlack"/>
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/nav_settings"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
