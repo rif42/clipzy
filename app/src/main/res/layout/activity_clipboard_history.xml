@@ -8,12 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cliphistoryrecview"
-        android:layout_width="363dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:background="@color/AlmostBlack"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,29 +24,30 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:background="@color/AlmostBlack"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/AlmostBlack">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/nav_history"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/AlmostBlack"
             app:srcCompat="@drawable/ic_baseline_history_24"
             tools:ignore="SpeakableTextPresentCheck"
-            android:background="@color/AlmostBlack"/>
+            android:contentDescription="TODO" />
 
         <ImageButton
             android:id="@+id/nav_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/AlmostBlack"
             app:srcCompat="@drawable/ic_baseline_text_snippet_24"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:background="@color/AlmostBlack"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/nav_settings"
