@@ -55,10 +55,12 @@ class MainActivity : AppCompatActivity() {
         val cliptimestamp: TextView = findViewById(R.id.clip_timestamp)
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         mainclip.text = clipboardManager.primaryClip?.getItemAt(0)?.text
-        val prefilteredcliptimestamp = clipboardManager.primaryClipDescription?.toString()
 
-
-        //01-05 13:07:19.782
+        //fetching timestamp
+        var prefilteredcliptimestamp = clipboardManager.primaryClipDescription?.toString()
+        val filteredtimestamp = prefilteredcliptimestamp?.takeLast(21)?.dropLast(7)
+        cliptimestamp.text = filteredtimestamp
+        //returns 01-05 13:07:19 format
 
         //adding clip to array for history tracking
         val currentclip = mainclip.text
