@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ClipboardHistoryAdapter:RecyclerView.Adapter<ClipboardHistoryAdapter.ViewHolder>() {
 
-    private var cliptest = arrayOf("clipboard test one", "clipboard test two", "clipboard test three")
-    private var cliptesttime = arrayOf("12 Dec 2021, 23:20", "21 Dec 2022, 12:02", "17 Jan 2021, 16:12")
+    private var cliptest = arrayOf("clipboard test one", "clipboard test two", "clipboard test three","clipboard test one", "clipboard test two", "clipboard test three")
+    private var cliptesttime = arrayOf("12 Dec 2021, 23:20", "21 Dec 2022, 12:02", "17 Jan 2021, 16:12","12 Dec 2021, 23:20", "21 Dec 2022, 12:02", "17 Jan 2021, 16:12")
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

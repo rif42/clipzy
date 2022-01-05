@@ -127,20 +127,18 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/copytext"
+    <TextView
+        android:id="@+id/clip_timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/test"
+        android:importantForAutofill="no"
+        android:text="@string/blank"
         app:layout_constraintBottom_toTopOf="@+id/copy_paste"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateSpeakableTextCheck"
-        android:importantForAutofill="no" />
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
