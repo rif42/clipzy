@@ -1,9 +1,6 @@
 package com.example.test
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,18 +9,17 @@ import android.text.Editable
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import java.lang.reflect.Array
 
 
 class MainActivity : AppCompatActivity() {
 
-    val cliplist:MutableList<CharSequence> = arrayListOf("")
+    private var clip_current = ""
+    private var clip_timestamp = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //appending stuff into the array
-
 
         //navigation menus
         val navhistory:ImageButton=findViewById(R.id.nav_history)
@@ -36,6 +32,14 @@ class MainActivity : AppCompatActivity() {
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
         pastebutton.setOnClickListener{
             paste()
+            val sharedPref: SharedPreferences = getSharedPreferences("clipsharedpref", MODE_PRIVATE)
+            val editor = sharedPref.edit()
+
+            editor.apply {
+                putString("clipdata", clip_current)
+                putString("cliptimestamp", clip_timestamp)
+                apply()
+            }
         }
 
 //        val copybutton:ImageButton = findViewById(R.id.copy_button)
@@ -44,10 +48,10 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        paste()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        paste()
+//    }
 
     fun paste()
     {
@@ -56,15 +60,28 @@ class MainActivity : AppCompatActivity() {
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         mainclip.text = clipboardManager.primaryClip?.getItemAt(0)?.text
 
+        //adding clip to array for history tracking
+        clip_current= mainclip.text.toString()
+//        cliplist.add(currentclip)
+
         //fetching timestamp
-        var prefilteredcliptimestamp = clipboardManager.primaryClipDescription?.toString()
-        val filteredtimestamp = prefilteredcliptimestamp?.takeLast(21)?.dropLast(7)
+        val prefilteredcliptimestamp = clipboardManager.primaryClipDescription.toString()
+        val filteredtimestamp = prefilteredcliptimestamp.takeLast(21)?.dropLast(7)
         cliptimestamp.text = filteredtimestamp
+        clip_timestamp = filteredtimestamp
         //returns 01-05 13:07:19 format
 
-        //adding clip to array for history tracking
-        val currentclip = mainclip.text
-        cliplist.add(currentclip)
+        //adding clip timestamp to array for timestamp tracking
+//        if (filteredtimestamp != null) {
+//            cliptime.add(filteredtimestamp)
+//        }
+
+//        //passing data to clipboardhistory using intent, replacing it with sharedpreference
+//        Intent(this, ClipboardHistory::class.java).also{
+//            it.putExtra("EXTRA_CLIP", currentclip)
+//            it.putExtra("EXTRA_TIMESTAMP", filteredtimestamp)
+//            startActivity(it)
+//        };
 
         Toast.makeText(this, "Text Pasted", Toast.LENGTH_SHORT).show()
     }
