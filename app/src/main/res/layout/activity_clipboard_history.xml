@@ -15,7 +15,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="@color/AlmostBlack"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,25 +41,58 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:contentDescription="@string/blank"
             android:id="@+id/nav_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/AlmostBlack"
+            android:contentDescription="@string/blank"
             app:srcCompat="@drawable/ic_baseline_text_snippet_24"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:contentDescription="@string/blank"
             android:id="@+id/nav_settings"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/AlmostBlack"
+            android:contentDescription="@string/blank"
             app:srcCompat="@drawable/ic_baseline_settings_24"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/copy_paste"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/AlmostBlack">
+
+        <ImageButton
+            android:id="@+id/copy_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/AlmostBlack"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_baseline_content_copy_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/paste_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/AlmostBlack"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_baseline_content_paste_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

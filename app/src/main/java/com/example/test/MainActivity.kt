@@ -14,8 +14,8 @@ import java.lang.reflect.Array
 
 class MainActivity : AppCompatActivity() {
 
-    private var clip_current = ""
-    private var clip_timestamp = ""
+    private var clip_current = mutableSetOf<String>("")
+    private var clip_timestamp = mutableSetOf<String>("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +32,14 @@ class MainActivity : AppCompatActivity() {
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
         pastebutton.setOnClickListener{
             paste()
-            val sharedPref: SharedPreferences = getSharedPreferences("clipsharedpref", MODE_PRIVATE)
-            val editor = sharedPref.edit()
-
-            editor.apply {
-                putString("clipdata", clip_current)
-                putString("cliptimestamp", clip_timestamp)
-                apply()
-            }
+//            val sharedPref: SharedPreferences = getSharedPreferences("clipsharedpref", MODE_PRIVATE)
+//            val editor = sharedPref.edit()
+//
+//            editor.apply {
+//                putStringSet("clipdata", clip_current)
+//                putStringSet("cliptimestamp", clip_timestamp)
+//                apply()
+//            }
         }
 
 //        val copybutton:ImageButton = findViewById(R.id.copy_button)
@@ -61,14 +61,14 @@ class MainActivity : AppCompatActivity() {
         mainclip.text = clipboardManager.primaryClip?.getItemAt(0)?.text
 
         //adding clip to array for history tracking
-        clip_current= mainclip.text.toString()
+//        clip_current.add(mainclip.text.toString())
 //        cliplist.add(currentclip)
 
         //fetching timestamp
         val prefilteredcliptimestamp = clipboardManager.primaryClipDescription.toString()
         val filteredtimestamp = prefilteredcliptimestamp.takeLast(21)?.dropLast(7)
         cliptimestamp.text = filteredtimestamp
-        clip_timestamp = filteredtimestamp
+//        clip_timestamp.add(filteredtimestamp)
         //returns 01-05 13:07:19 format
 
         //adding clip timestamp to array for timestamp tracking
