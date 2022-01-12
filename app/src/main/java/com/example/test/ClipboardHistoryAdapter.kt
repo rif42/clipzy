@@ -20,9 +20,6 @@ class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.
         val currentitem = cliparray[position]
         holder.itemDesc.text = currentitem.data
         holder.itemTimestamp.text = currentitem.timestamp
-
-//        holder.itemDesc.text = cliparray[position]
-//        holder.itemTimestamp.text = timearray[position]
     }
 
     override fun getItemCount(): Int {
@@ -30,11 +27,7 @@ class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var itemDesc: TextView
-        var itemTimestamp: TextView
-        init {
-            itemDesc = itemView.findViewById(R.id.itemDesc)
-            itemTimestamp = itemView.findViewById(R.id.itemTimestamp)
-        }
+        var itemDesc: TextView = itemView.findViewById(R.id.itemDesc)
+        var itemTimestamp: TextView = itemView.findViewById(R.id.itemTimestamp)
     }
 }

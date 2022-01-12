@@ -19,15 +19,11 @@ class ClipboardHistory : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var cliphistoryrecview: RecyclerView
     private lateinit var cliparray: ArrayList<dataclip>
-    private var timearray: ArrayList<String> = arrayListOf()
-
-    private var adaptercliplist = mutableSetOf<String>("test")
-    private var adaptercliptime = mutableSetOf<String>("testdata")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clipboard_history)
+
         //navigation menu
         val navhome: ImageButton =findViewById(R.id.nav_home)
         navhome.setOnClickListener {
@@ -38,18 +34,12 @@ class ClipboardHistory : AppCompatActivity() {
         //for recyclerview
         cliphistoryrecview = findViewById(R.id.cliphistoryrecview)
         cliphistoryrecview.layoutManager = LinearLayoutManager(this)
-
-
-        cliparray = arrayListOf<dataclip>()
-        cliphistoryrecview.adapter = ClipboardHistoryAdapter(cliparray)
-
-//        getUserData()
+        cliphistoryrecview.setHasFixedSize(true)
+        getUserData()
 
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
         pastebutton.setOnClickListener{
             paste()
-//            getUserData()
-//            Toast.makeText(this, cliparray.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -57,7 +47,7 @@ class ClipboardHistory : AppCompatActivity() {
     {
         //fetching clipboard data
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        var mainclip = clipboardManager.primaryClip?.getItemAt(0)?.text.toString()
+        val mainclip = clipboardManager.primaryClip?.getItemAt(0)?.text.toString()
 
         val id = Random.nextInt(1000, 9999).toString()
 
@@ -84,16 +74,15 @@ class ClipboardHistory : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("Clipdata")
         database.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                cliparray = arrayListOf<dataclip>()
                 if (snapshot.exists())
                 {
                     for (userSnapshot in snapshot.children)
                     {
                         val datavalue = userSnapshot.getValue(dataclip::class.java)
-                        if (datavalue != null) {
-                            cliparray.add(datavalue)
-                        }
-                        cliphistoryrecview.adapter = ClipboardHistoryAdapter(cliparray)
+                        cliparray.add(datavalue!!)
                     }
+                    cliphistoryrecview.adapter = ClipboardHistoryAdapter(cliparray)
                 }
             }
 

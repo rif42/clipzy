@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         //fetching timestamp
         val prefilteredcliptimestamp = clipboardManager.primaryClipDescription.toString()
-        val filteredtimestamp = prefilteredcliptimestamp.takeLast(21)?.dropLast(7)
+        val filteredtimestamp = prefilteredcliptimestamp.takeLast(21).dropLast(7)
         cliptimestamp.text = filteredtimestamp
 //        clip_timestamp.add(filteredtimestamp)
         //returns 01-05 13:07:19 format
