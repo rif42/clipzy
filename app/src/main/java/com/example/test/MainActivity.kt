@@ -9,13 +9,15 @@ import android.text.Editable
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.lang.reflect.Array
+import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var clip_current = mutableSetOf<String>("")
-    private var clip_timestamp = mutableSetOf<String>("")
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +34,6 @@ class MainActivity : AppCompatActivity() {
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
         pastebutton.setOnClickListener{
             paste()
-//            val sharedPref: SharedPreferences = getSharedPreferences("clipsharedpref", MODE_PRIVATE)
-//            val editor = sharedPref.edit()
-//
-//            editor.apply {
-//                putStringSet("clipdata", clip_current)
-//                putStringSet("cliptimestamp", clip_timestamp)
-//                apply()
-//            }
         }
 
 //        val copybutton:ImageButton = findViewById(R.id.copy_button)
@@ -58,11 +52,8 @@ class MainActivity : AppCompatActivity() {
         val mainclip: TextView = findViewById(R.id.main_clipboard)
         val cliptimestamp: TextView = findViewById(R.id.clip_timestamp)
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        mainclip.text = clipboardManager.primaryClip?.getItemAt(0)?.text
-
-        //adding clip to array for history tracking
-//        clip_current.add(mainclip.text.toString())
-//        cliplist.add(currentclip)
+        val testclip = clipboardManager.primaryClip?.getItemAt(0)?.text.toString()
+        mainclip.text = testclip
 
         //fetching timestamp
         val prefilteredcliptimestamp = clipboardManager.primaryClipDescription.toString()
@@ -71,19 +62,17 @@ class MainActivity : AppCompatActivity() {
 //        clip_timestamp.add(filteredtimestamp)
         //returns 01-05 13:07:19 format
 
-        //adding clip timestamp to array for timestamp tracking
-//        if (filteredtimestamp != null) {
-//            cliptime.add(filteredtimestamp)
-//        }
+        database = FirebaseDatabase.getInstance().getReference("Clipdata")
+        //clip timestamp as key, clip data as value
+        //entry example = 01-11 16:09:22: "lorem ipsum dolor sit amet"
+        val id = Random.nextInt(1000, 9999).toString()
 
-//        //passing data to clipboardhistory using intent, replacing it with sharedpreference
-//        Intent(this, ClipboardHistory::class.java).also{
-//            it.putExtra("EXTRA_CLIP", currentclip)
-//            it.putExtra("EXTRA_TIMESTAMP", filteredtimestamp)
-//            startActivity(it)
-//        };
-
-        Toast.makeText(this, "Text Pasted", Toast.LENGTH_SHORT).show()
+        val entry = dataclip(testclip , filteredtimestamp)
+        database.child(id).setValue(entry).addOnSuccessListener {
+            Toast.makeText(this, "data saved!", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener{
+            Toast.makeText(this, "fail to save data!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 //    fun copy()

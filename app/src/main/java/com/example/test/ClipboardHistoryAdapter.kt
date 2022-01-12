@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ClipboardHistoryAdapter(val adaptercliplist:MutableSet<String>, val adaptercliptime:MutableSet<String>) :RecyclerView.Adapter<ClipboardHistoryAdapter.ViewHolder>() {
+class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.Adapter<ClipboardHistoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -17,12 +17,16 @@ class ClipboardHistoryAdapter(val adaptercliplist:MutableSet<String>, val adapte
     }
 
     override fun onBindViewHolder(holder: ClipboardHistoryAdapter.ViewHolder, position: Int) {
-        holder.itemDesc.text = adaptercliplist.elementAt(position)
-        holder.itemTimestamp.text = adaptercliptime.elementAt(position)
+        val currentitem = cliparray[position]
+        holder.itemDesc.text = currentitem.data
+        holder.itemTimestamp.text = currentitem.timestamp
+
+//        holder.itemDesc.text = cliparray[position]
+//        holder.itemTimestamp.text = timearray[position]
     }
 
     override fun getItemCount(): Int {
-        return adaptercliplist.size
+        return cliparray.size
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
