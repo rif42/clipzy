@@ -6,19 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cliphistoryrecview"
+    <ImageButton
+        android:id="@+id/paste_button"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="24dp"
+        android:layout_weight="1"
         android:background="@color/AlmostBlack"
-        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/cliphistoryrecview"
+        app:layout_constraintStart_toStartOf="@+id/cliphistoryrecview"
+        app:srcCompat="@drawable/ic_baseline_content_paste_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -62,37 +62,19 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/copy_paste"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cliphistoryrecview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/AlmostBlack"
+        app:layout_constraintBottom_toTopOf="@+id/paste_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/AlmostBlack">
-
-        <ImageButton
-            android:id="@+id/copy_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/AlmostBlack"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_content_copy_24"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/paste_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/AlmostBlack"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_content_paste_24"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,8 +49,6 @@ class ClipboardHistory : AppCompatActivity() {
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val mainclip = clipboardManager.primaryClip?.getItemAt(0)?.text.toString()
 
-        val id = Random.nextInt(1000, 9999).toString()
-
         //fetching timestamp
         val prefilteredcliptimestamp = clipboardManager.primaryClipDescription.toString()
         val filteredtimestamp = prefilteredcliptimestamp.takeLast(21).dropLast(7)
@@ -58,8 +56,11 @@ class ClipboardHistory : AppCompatActivity() {
 
         //save clip and timestamp on firebase
         database = FirebaseDatabase.getInstance().getReference("Clipdata")
-        //clip timestamp as key, clip data as value
-        //entry example = 01-11 16:09:22: "lorem ipsum dolor sit amet"
+
+//        val id = Random.nextInt(1000, 9999).toString()
+
+        var id = filteredtimestamp
+        id = id.filter { it.isDigit() || it.isWhitespace()}
 
         val entry = dataclip(mainclip , filteredtimestamp)
         database.child(id).setValue(entry).addOnSuccessListener {
