@@ -8,9 +8,12 @@
 
     <EditText
         android:id="@+id/main_clipboard"
-        android:layout_width="363dp"
-        android:layout_height="572dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/AlmostBlack"
         android:gravity="start"
         android:lineSpacingExtra="4sp"
@@ -18,19 +21,23 @@
         android:text="@string/test"
         android:textAlignment="viewStart"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_buttons" />
 
     <LinearLayout
         android:id="@+id/edit_buttons"
-        android:layout_width="363dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@color/AlmostBlack"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/bold_button"
@@ -48,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/AlmostBlack"
+            android:contentDescription="TODO"
             android:minHeight="48dp"
             app:srcCompat="@drawable/ic_baseline_format_italic_24"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -72,29 +80,19 @@
             app:srcCompat="@drawable/ic_baseline_strikethrough_s_24"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageButton
-            android:id="@+id/highlight_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/AlmostBlack"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_opacity_24"
-            tools:ignore="SpeakableTextPresentCheck" />
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/copy_paste"
-        android:layout_width="363dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:background="@color/AlmostBlack"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/main_clipboard"
+        app:layout_constraintStart_toStartOf="@+id/main_clipboard">
 
         <ImageButton
             android:id="@+id/copy_button"
@@ -159,7 +157,7 @@
 
     <TextView
         android:id="@+id/clip_timestamp"
-        android:layout_width="442dp"
+        android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:ems="10"
@@ -167,8 +165,8 @@
         android:text="@string/blank"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/main_clipboard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/main_clipboard"
+        app:layout_constraintStart_toStartOf="@+id/main_clipboard"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView

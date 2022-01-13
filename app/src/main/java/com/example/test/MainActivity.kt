@@ -1,11 +1,18 @@
 package com.example.test
 
 import android.content.*
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StrikethroughSpan
+import android.text.style.StyleSpan
+import android.text.style.UnderlineSpan
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
@@ -47,6 +54,56 @@ class MainActivity : AppCompatActivity() {
             paste()
         }
 
+        //text modifier menus
+        val bold:ImageButton = findViewById(R.id.bold_button)
+        bold.setOnClickListener {
+            val spannableString: Spannable = SpannableStringBuilder(editfield.text)
+            spannableString.setSpan(
+                StyleSpan(Typeface.BOLD),
+                editfield.selectionStart,
+                editfield.selectionEnd,
+                0
+            )
+            editfield.setText(spannableString)
+        }
+
+        val italic:ImageButton = findViewById(R.id.italic_button)
+        italic.setOnClickListener {
+            val spannableString: Spannable = SpannableStringBuilder(editfield.text)
+            spannableString.setSpan(
+                StyleSpan(Typeface.ITALIC),
+                editfield.selectionStart,
+                editfield.selectionEnd,
+                0
+            )
+            editfield.setText(spannableString)
+        }
+
+        val underline:ImageButton = findViewById(R.id.underline_button)
+        underline.setOnClickListener {
+            val spannableString: Spannable = SpannableStringBuilder(editfield.text)
+            spannableString.setSpan(
+                UnderlineSpan(),
+                editfield.selectionStart,
+                editfield.selectionEnd,
+                0
+            )
+            editfield.setText(spannableString)
+        }
+
+        val strike:ImageButton = findViewById(R.id.strikethrough_button)
+        strike.setOnClickListener {
+            val spannableString: Spannable = SpannableStringBuilder(editfield.text)
+            spannableString.setSpan(
+                StrikethroughSpan(),
+                editfield.selectionStart,
+                editfield.selectionEnd,
+                0
+            )
+            editfield.setText(spannableString)
+        }
+
+
 //        val copybutton:ImageButton = findViewById(R.id.copy_button)
 //        copybutton.setOnClickListener {
 //            copy()
@@ -60,17 +117,16 @@ class MainActivity : AppCompatActivity() {
 
     fun paste()
     {
-        val mainclip: TextView = findViewById(R.id.main_clipboard)
+        val mainclip: EditText = findViewById(R.id.main_clipboard)
         val cliptimestamp: TextView = findViewById(R.id.clip_timestamp)
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val testclip = clipboardManager.primaryClip?.getItemAt(0)?.text.toString()
-        mainclip.text = testclip
+        mainclip.setText(testclip)
 
         //fetching timestamp
         val prefilteredcliptimestamp = clipboardManager.primaryClipDescription.toString()
         val filteredtimestamp = prefilteredcliptimestamp.takeLast(21).dropLast(7)
         cliptimestamp.text = filteredtimestamp
-//        clip_timestamp.add(filteredtimestamp)
         //returns 01-05 13:07:19 format
 
         database = FirebaseDatabase.getInstance().getReference("Clipdata")
