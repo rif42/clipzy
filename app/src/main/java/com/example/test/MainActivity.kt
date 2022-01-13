@@ -23,6 +23,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val bundle = intent.extras
+        val editclip = bundle?.getString("EXTRA_EDITCLIP")
+        val edittimestamp = bundle?.getString("EXTRA_EDITTIMESTAMP")
+        val edittimestampid = bundle?.getString("EXTRA_EDITTIMESTAMP_ID")
+
+        val editfield:EditText = findViewById(R.id.main_clipboard)
+        val timestampfield:TextView = findViewById(R.id.clip_timestamp)
+
+        editfield.setText(editclip)
+        timestampfield.text = edittimestamp
+
         //navigation menus
         val navhistory:ImageButton=findViewById(R.id.nav_history)
         navhistory.setOnClickListener {
@@ -65,7 +76,8 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("Clipdata")
         //clip timestamp as key, clip data as value
         //entry example = 01-11 16:09:22: "lorem ipsum dolor sit amet"
-        val id = Random.nextInt(1000, 9999).toString()
+        var id = filteredtimestamp
+        id = id.filter { it.isDigit() || it.isWhitespace()}
 
         val entry = dataclip(testclip , filteredtimestamp)
         database.child(id).setValue(entry).addOnSuccessListener {
@@ -84,7 +96,3 @@ class MainActivity : AppCompatActivity() {
 //        clipboardManager.setPrimaryClip(clipData)
 //    }
 }
-
-
-
-

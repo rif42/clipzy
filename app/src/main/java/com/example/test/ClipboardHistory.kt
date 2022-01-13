@@ -41,8 +41,6 @@ class ClipboardHistory : AppCompatActivity() {
         pastebutton.setOnClickListener{
             paste()
         }
-
-
     }
 
     fun paste()

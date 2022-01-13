@@ -6,14 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
         android:id="@+id/main_clipboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="363dp"
+        android:layout_height="572dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
         android:background="@color/AlmostBlack"
         android:gravity="start"
         android:lineSpacingExtra="4sp"
@@ -21,25 +18,18 @@
         android:text="@string/test"
         android:textAlignment="viewStart"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/edit_buttons"
-        android:layout_width="0dp"
+        android:layout_width="363dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
         android:background="@color/AlmostBlack"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
@@ -96,14 +86,13 @@
 
     <LinearLayout
         android:id="@+id/copy_paste"
-        android:layout_width="0dp"
+        android:layout_width="363dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:layout_weight="1"
         android:background="@color/AlmostBlack"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/edit_buttons"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -129,47 +118,33 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/clip_timestamp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:text="@string/blank"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/copy_paste"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:background="@color/AlmostBlack"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/AlmostBlack">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/nav_history"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/AlmostBlack"
             app:srcCompat="@drawable/ic_baseline_history_24"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:background="@color/AlmostBlack"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/nav_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/AlmostBlack"
             app:srcCompat="@drawable/ic_baseline_text_snippet_24"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:background="@color/AlmostBlack"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/nav_settings"
@@ -181,6 +156,20 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/clip_timestamp"
+        android:layout_width="442dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:text="@string/blank"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/main_clipboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/cliptest"
