@@ -1,5 +1,7 @@
 package com.example.test
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,12 +13,15 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlin.coroutines.coroutineContext
 
 class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.Adapter<ClipboardHistoryAdapter.ViewHolder>() {
 
@@ -95,6 +100,14 @@ class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.
                 val editintent = Intent(adaptercontext, MainActivity::class.java)
                 editintent.putExtras(editextras)
                 startActivity(adaptercontext, editintent, null )
+            }
+
+            copybtn.setOnClickListener {
+                val textToCopy = itemDesc.text.toString()
+                val clipboardManager = adaptercontext.getSystemService<ClipboardManager>()
+    //            val clipboardManager = getSystemService(context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clipData = ClipData.newPlainText("text", textToCopy)
+                clipboardManager?.setPrimaryClip(clipData)
             }
         }
 

@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/AlmostBlack"
-            android:contentDescription="TODO"
+            android:contentDescription="makes selected text italic"
             android:minHeight="48dp"
             app:srcCompat="@drawable/ic_baseline_format_italic_24"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -95,24 +95,25 @@
         app:layout_constraintStart_toStartOf="@+id/main_clipboard">
 
         <ImageButton
-            android:id="@+id/copy_button"
+            android:id="@+id/reject_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/AlmostBlack"
             android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_content_copy_24"
+            app:srcCompat="@drawable/ic_baseline_close_24"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:id="@+id/paste_button"
+            android:id="@+id/confirm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/AlmostBlack"
             android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_content_paste_24"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:srcCompat="@drawable/ic_baseline_done_24"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:contentDescription="saves the edited clip"/>
 
     </LinearLayout>
 
@@ -132,7 +133,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/AlmostBlack"
-            app:srcCompat="@drawable/ic_baseline_history_24"
+            app:srcCompat="@drawable/ic_baseline_data_array_24"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
