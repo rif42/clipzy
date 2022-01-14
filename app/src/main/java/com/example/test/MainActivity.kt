@@ -16,19 +16,20 @@ import android.text.style.UnderlineSpan
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import java.lang.reflect.Array
 import kotlin.random.Random
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        database = FirebaseDatabase.getInstance().getReference("Clipdata")
 
         var bundle = intent.extras
         val editclip = bundle?.getString("EXTRA_EDITCLIP")
@@ -37,6 +38,19 @@ class MainActivity : AppCompatActivity() {
 
         val editfield:EditText = findViewById(R.id.main_clipboard)
         val timestampfield:TextView = findViewById(R.id.clip_timestamp)
+
+        val fontdb = FirebaseDatabase.getInstance().getReference("Fontsize")
+        fontdb.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val mcfontvalue = snapshot.child("mcfont").getValue().toString().toFloat()
+
+                editfield.textSize = mcfontvalue
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO()
+            }
+        })
 
         editfield.setText(editclip)
         timestampfield.text = edittimestamp
@@ -87,6 +101,13 @@ class MainActivity : AppCompatActivity() {
             val intenthistory = Intent(this, ClipboardHistory::class.java)
             startActivity(intenthistory)
         }
+
+        val navsetting:ImageButton=findViewById(R.id.nav_settings)
+        navsetting.setOnClickListener {
+            val intentsettings = Intent(this, Settings::class.java)
+            startActivity(intentsettings)
+        }
+
 
         //text modifier menus
         val bold:ImageButton = findViewById(R.id.bold_button)

@@ -18,8 +18,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlin.coroutines.coroutineContext
 
@@ -27,6 +26,7 @@ class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.
 
     private lateinit var database: DatabaseReference
     private lateinit var adaptercontext:Context
+    private lateinit var fontdb: DatabaseReference
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -56,6 +56,21 @@ class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.
 
         init
         {
+            fontdb = FirebaseDatabase.getInstance().getReference("Fontsize")
+            fontdb.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val tsfontvalue = snapshot.child("tsfont").getValue().toString().toFloat()
+                    val dbfontvalue = snapshot.child("dbfont").getValue().toString().toFloat()
+
+                    itemTimestamp.textSize = tsfontvalue
+                    itemDesc.textSize = dbfontvalue
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(adaptercontext, "failed!!", Toast.LENGTH_SHORT).show()
+                }
+            })
+
             itemView.setOnClickListener {
                 if (editbtn.isVisible){
                     editbtn.visibility = View.INVISIBLE
@@ -110,6 +125,5 @@ class ClipboardHistoryAdapter(val cliparray: ArrayList<dataclip>) :RecyclerView.
                 clipboardManager?.setPrimaryClip(clipData)
             }
         }
-
     }
 }

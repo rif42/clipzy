@@ -17,6 +17,8 @@ import kotlin.random.Random
 class ClipboardHistory : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
+
+
     private lateinit var cliphistoryrecview: RecyclerView
     private lateinit var cliparray: ArrayList<dataclip>
 
@@ -31,10 +33,17 @@ class ClipboardHistory : AppCompatActivity() {
             startActivity(intenthome)
         }
 
+        val navsetting:ImageButton=findViewById(R.id.nav_settings)
+        navsetting.setOnClickListener {
+            val intentsettings = Intent(this, Settings::class.java)
+            startActivity(intentsettings)
+        }
+
         //for recyclerview
         cliphistoryrecview = findViewById(R.id.cliphistoryrecview)
         cliphistoryrecview.layoutManager = LinearLayoutManager(this)
         cliphistoryrecview.setHasFixedSize(true)
+
         getUserData()
 
         val pastebutton:ImageButton = findViewById(R.id.paste_button)
@@ -56,8 +65,6 @@ class ClipboardHistory : AppCompatActivity() {
 
         //save clip and timestamp on firebase
         database = FirebaseDatabase.getInstance().getReference("Clipdata")
-
-//        val id = Random.nextInt(1000, 9999).toString()
 
         var id = filteredtimestamp
         id = id.filter { it.isDigit() || it.isWhitespace()}
@@ -93,30 +100,4 @@ class ClipboardHistory : AppCompatActivity() {
 
         })
     }
-
-//    fun update()
-//    {
-//        val sharedPrefClip: SharedPreferences = getSharedPreferences("clipsharedpref", MODE_PRIVATE)
-//        val clipeditor = sharedPrefClip.edit()
-//        clipeditor.apply {
-//            putStringSet("clipdata", adaptercliplist)
-//            apply()
-//        }
-//
-//        val sharedPrefTime: SharedPreferences = getSharedPreferences("timesharedpref", MODE_PRIVATE)
-//        val timeeditor = sharedPrefTime.edit()
-//        timeeditor.apply {
-//            putStringSet("cliptime", adaptercliptime)
-//            apply()
-//        }
-//
-//        //assigns new clipboard to new list
-//        adaptercliplist = sharedPrefClip.getStringSet("clipsharedpref", adaptercliplist) as MutableSet<String>
-//        adaptercliptime = sharedPrefTime.getStringSet("timesharedpref", adaptercliptime) as MutableSet<String>
-//
-//        //refreshes the adapter so new data get loaded
-//        val cliphistoryrecview: RecyclerView = findViewById(R.id.cliphistoryrecview)
-//        adapter = ClipboardHistoryAdapter(adaptercliplist, adaptercliptime)
-//        cliphistoryrecview.adapter = adapter
-//    }
 }
