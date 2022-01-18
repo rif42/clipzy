@@ -17,8 +17,6 @@ import kotlin.random.Random
 class ClipboardHistory : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
-
-
     private lateinit var cliphistoryrecview: RecyclerView
     private lateinit var cliparray: ArrayList<dataclip>
 
